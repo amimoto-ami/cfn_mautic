@@ -5,7 +5,7 @@
     EbsOptimized "false"
     ImageId do
       Fn__FindInMap [
-        "MPAmimotov4",
+        "MPAMIs",
         _{ Ref "AWS::Region" },
         "AMI"
       ]
@@ -49,8 +49,12 @@
               Ref "AWS::Region"
             },
             "\n",
-            "until find /var/www/vhosts -name wp-config.php  ; do sleep 5 ; done", "\n",
-            "/opt/aws/bin/cfn-signal -e $? -r \"WordPress setup complete\" '",
+            "until [ -f /var/www/html/install_amiage.php ]  ; do sleep 5 ; done", "\n",
+            "sleep 2", "\n",
+            "/usr/bin/curl -sL https://raw.githubusercontent.com/Launch-with-1-Click/lw1-mautic/master/cfn_appendix/cfn_appendix.rb -o /opt/lw1/tasks/cfn_appendix.rb", "\n",
+            "/usr/bin/curl -sL https://raw.githubusercontent.com/Launch-with-1-Click/lw1-mautic/master/cfn_appendix/cfn_local.php.erb -o /opt/lw1/tasks/cfn_local.php.erb", "\n",
+            "/usr/bin/chef-apply /opt/lw1/tasks/cfn_appendix.rb --json-attributes /opt/aws/cloud_formation.json", "\n",
+            "/opt/aws/bin/cfn-signal -e $? -r \"CFn setup complete\" '",
             _{ Ref "EC2WaitHandle" }, "'\n"
           ]
         ]
