@@ -1,8 +1,8 @@
 _path("/opt/aws/cloud_formation.json") do
 	content '{
 	  "rds" : {
-		"database" : "wordpress",
-		"username" : "amimoto",
+		"database" : "rdsdb",
+		"username" : "amiage",
 		"password" : "{{password}}",
 		"endpoint" : "{{endpoint}}",
 		"port"     : 3306
@@ -15,7 +15,6 @@ _path("/opt/aws/cloud_formation.json") do
 	password do
 	  Ref "MySQLPassword"
 	end
-	serverid "dummy(value_will_update_by_AmimotoFrontLC)"
   end
   mode "00644"
   owner "root"

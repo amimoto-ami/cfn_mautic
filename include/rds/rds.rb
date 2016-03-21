@@ -18,12 +18,12 @@ RDS do
     DBInstanceClass do
       Ref "RDSInstanceType"
     end
-    DBName "wordpress"
+    DBName "rdsdb"
     DBSubnetGroupName do
       Ref "DBSubnetGroup"
     end
     Engine "MariaDB"
-    MasterUsername "amimoto"
+    MasterUsername "amiage"
     MasterUserPassword do
       Ref "MySQLPassword"
     end
