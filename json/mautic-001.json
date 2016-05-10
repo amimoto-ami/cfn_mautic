@@ -35,6 +35,47 @@
       }
     }
   },
+  "Metadata": {
+    "AWS::CloudFormation::Interface": {
+      "ParameterGroups": [
+        {
+          "Label": {
+            "default": "Select Locations"
+          },
+          "Parameters": [
+            "AvailabilityZone",
+            "SecondaryAvailabilityZone"
+          ]
+        },
+        {
+          "Label": {
+            "default": "Amazon EC2 Configuration"
+          },
+          "Parameters": [
+            "InstanceType",
+            "KeyName",
+            "SSHLocation"
+          ]
+        },
+        {
+          "Label": {
+            "default": "Amazon Aurora Configration"
+          },
+          "Parameters": [
+            "RDSInstanceType",
+            "MulitiAZDatabase",
+            "MySQLPassword",
+            "DBAllocatedStorage"
+          ]
+        }
+      ],
+      "ParameterLabels": {
+        "VPCID": {
+          "default": "Which VPC should this be deployed to?"
+        }
+      }
+    }
+  },
   "Parameters": {
     "KeyName": {
       "Description": "Name of an existing EC2 key pair to enable SSH access to the instances",
@@ -104,6 +145,7 @@
       "Type": "String",
       "MinLength": "8",
       "MaxLength": "64",
+      "AllowedPattern": "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[^\\s]{8,}$",
       "NoEcho": "true"
     },
     "MulitiAZDatabase": {

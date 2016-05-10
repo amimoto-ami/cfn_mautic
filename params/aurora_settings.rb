@@ -3,6 +3,7 @@ MySQLPassword do
   Type        "String"
   MinLength   8
   MaxLength   64
+  AllowedPattern '^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[^\s]{8,}$'
   NoEcho      true
 end
 
@@ -11,7 +12,7 @@ MulitiAZDatabase do
   Default               true
   Type                  "String"
   AllowedValues         "true","false"
-  ConstraintDescription "must be either true or false"
+  ConstraintDescription "Must be either true or false"
 end
 
 RDSInstanceType do
@@ -28,5 +29,5 @@ DBAllocatedStorage do
   Type                  "Number"
   MinValue              5
   MaxValue              3072
-  ConstraintDescription "must be between 5 and 3072Gb."
+  ConstraintDescription "Must be between 5 and 3072Gb."
 end

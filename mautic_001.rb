@@ -7,6 +7,10 @@ Mappings do
   _include "mautic/ami_hvm.rb"
 end
 
+Metadata do
+  _include "metadata/interface_001.rb"
+end
+
 Parameters do
   _include "params/keyname.rb"
   _include "params/ssh_location.rb"
