@@ -146,7 +146,8 @@
       "MinLength": "8",
       "MaxLength": "64",
       "AllowedPattern": "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[^\\s]{8,}$",
-      "NoEcho": "true"
+      "NoEcho": "true",
+      "ConstraintDescription": "Value must be 8 letters or more; It must be included at least one or more upper-case, lower-case and numeric character. Special charactors are not allowed."
     },
     "MulitiAZDatabase": {
       "Description": "Crate a Multi-AZ RDS Database Instance",
@@ -156,7 +157,7 @@
         "true",
         "false"
       ],
-      "ConstraintDescription": "must be either true or false"
+      "ConstraintDescription": "Must be either true or false"
     },
     "RDSInstanceType": {
       "Description": "Aurora RDS Instance Type",
@@ -177,7 +178,7 @@
       "Type": "Number",
       "MinValue": "5",
       "MaxValue": "3072",
-      "ConstraintDescription": "must be between 5 and 3072Gb."
+      "ConstraintDescription": "Must be between 5 and 3072Gb."
     }
   },
   "Conditions": {
