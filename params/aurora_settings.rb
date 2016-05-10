@@ -5,6 +5,7 @@ MySQLPassword do
   MaxLength   64
   AllowedPattern '^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[^\s]{8,}$'
   NoEcho      true
+  ConstraintDescription "Value must be 8 letters or more; It must be included at least one or more upper-case, lower-case and numeric character. Special charactors are not allowed."
 end
 
 MulitiAZDatabase do
