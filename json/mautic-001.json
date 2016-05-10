@@ -4,34 +4,34 @@
   "Mappings": {
     "MPAMIs": {
       "eu-west-1": {
-        "AMI": "ami-386dd34b"
+        "AMI": "ami-2d3cbf5e"
       },
       "ap-southeast-1": {
-        "AMI": "ami-ecc8008f"
+        "AMI": "ami-ec26f38f"
       },
       "ap-southeast-2": {
-        "AMI": "ami-c36849a0"
+        "AMI": "ami-e50e2c86"
       },
       "eu-central-1": {
-        "AMI": "ami-186b8e77"
+        "AMI": "ami-17947478"
       },
       "ap-northeast-2": {
-        "AMI": "ami-d75d93b9"
+        "AMI": "ami-cdc50da3"
       },
       "ap-northeast-1": {
-        "AMI": "ami-e048448e"
+        "AMI": "ami-da2032b4"
       },
       "us-east-1": {
-        "AMI": "ami-6d310807"
+        "AMI": "ami-b95a49d3"
       },
       "sa-east-1": {
-        "AMI": "ami-7c028010"
+        "AMI": "ami-54d05e38"
       },
       "us-west-1": {
-        "AMI": "ami-43e59523"
+        "AMI": "ami-03dea263"
       },
       "us-west-2": {
-        "AMI": "ami-e8f91588"
+        "AMI": "ami-24ab5c44"
       }
     }
   },
@@ -282,12 +282,6 @@
         "AWS::CloudFormation::Init": {
           "config": {
             "files": {
-              "/opt/aws/cf_option.json": {
-                "content": "{\n                \"option\" : {\n                  \"cloudfront\" : \"true\"\n                }\n              }",
-                "mode": "00644",
-                "owner": "root",
-                "group": "root"
-              },
               "/opt/aws/cloud_formation.json": {
                 "content": "{\n\t  \"rds\" : {\n\t\t\"database\" : \"auroradb\",\n\t\t\"username\" : \"amiage\",\n\t\t\"password\" : \"{{password}}\",\n\t\t\"endpoint\" : \"{{endpoint}}\",\n\t\t\"port\"     : 3306\n\t  }\n\t}",
                 "context": {
@@ -367,11 +361,7 @@
                 "\n",
                 "sleep 2",
                 "\n",
-                "/usr/bin/curl -sL https://raw.githubusercontent.com/Launch-with-1-Click/lw1-mautic/master/cfn_appendix/cfn_appendix.rb -o /opt/lw1/tasks/cfn_appendix.rb",
-                "\n",
-                "/usr/bin/curl -sL https://raw.githubusercontent.com/Launch-with-1-Click/lw1-mautic/master/cfn_appendix/cfn_local.php.erb -o /opt/lw1/tasks/cfn_local.php.erb",
-                "\n",
-                "/usr/bin/chef-apply /opt/lw1/tasks/cfn_appendix.rb --json-attributes /opt/aws/cloud_formation.json",
+                "/usr/bin/chef-apply /opt/lw1/cfn_appendix/cfn_appendix.rb --json-attributes /opt/aws/cloud_formation.json",
                 "\n",
                 "/opt/aws/bin/cfn-signal -e $? -r \"CFn setup complete\" '",
                 {
@@ -440,7 +430,6 @@
     },
     "DBSubnetGroup": {
       "Type": "AWS::RDS::DBSubnetGroup",
-      "DependsOn": "AttachGatewayToVPC",
       "Properties": {
         "DBSubnetGroupDescription": "Subnets available for the RDS DB Instance",
         "SubnetIds": [
@@ -653,7 +642,7 @@
         }
       }
     },
-    "SecurityGroupInternalSelfIngress": {
+    "SecurityGroupInternalSelfIngress80": {
       "Type": "AWS::EC2::SecurityGroupIngress",
       "DependsOn": "SecurityGroupInternal",
       "Properties": {
@@ -664,8 +653,23 @@
           "Ref": "SecurityGroupInternal"
         },
         "IpProtocol": "tcp",
-        "ToPort": "65535",
-        "FromPort": "0"
+        "ToPort": "80",
+        "FromPort": "80"
+      }
+    },
+    "SecurityGroupInternalSelfIngress443": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "DependsOn": "SecurityGroupInternal",
+      "Properties": {
+        "GroupId": {
+          "Ref": "SecurityGroupInternal"
+        },
+        "SourceSecurityGroupId": {
+          "Ref": "SecurityGroupInternal"
+        },
+        "IpProtocol": "tcp",
+        "ToPort": "443",
+        "FromPort": "443"
       }
     },
     "ELB": {
