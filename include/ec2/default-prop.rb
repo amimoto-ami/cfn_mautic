@@ -51,15 +51,29 @@
             "\n",
             "until [ -f /var/www/html/install_amiage.php ]  ; do sleep 5 ; done", "\n",
             "until host ",
-            {
-              "Fn::GetAtt": [
+            _{
+              Fn::GetAtt [
                 "RDSCluster",
                 "Endpoint.Address"
               ]
             },
             "; do sleep 5 ; done",
+            "\n",
+            "until /usr/bin/mysqladmin -h ",
+            _{
+              Fn::GetAtt [
+                    "RDSCluster",
+                    "Endpoint.Address"
+              ]
+            },
+            " -uamiage ",
+            " -p",
+            _{ Ref "MySQLPassword" },
+            " status",
+            "; do sleep 5 ; done",
+            "\n",
             "/usr/bin/chef-apply /opt/lw1/cfn_appendix/cfn_appendix.rb --json-attributes /opt/aws/cloud_formation.json", "\n",
-            "/opt/aws/bin/cfn-signal -e $? -r \"CFn setup complete\" '",
+            "/opt/aws/bin/cfn-signal -e 0 -r \"CFn setup complete\" '",
             _{ Ref "EC2WaitHandle" }, "'\n"
           ]
         ]
