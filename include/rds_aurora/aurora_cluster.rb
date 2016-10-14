@@ -2,7 +2,7 @@ RDSCluster do
   Type "AWS::RDS::DBCluster"
   Properties do
     Engine "aurora"
-    DatabaseName          "auroradb"
+    DatabaseName          "mautic"
     PreferredBackupWindow "00:00-00:30"
     PreferredMaintenanceWindow "sun:16:00-sun:17:30"
     AvailabilityZones [
