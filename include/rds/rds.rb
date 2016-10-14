@@ -18,7 +18,7 @@ RDS do
     DBInstanceClass do
       Ref "RDSInstanceType"
     end
-    DBName "rdsdb"
+    DBName "mautic"
     DBSubnetGroupName do
       Ref "DBSubnetGroup"
     end
