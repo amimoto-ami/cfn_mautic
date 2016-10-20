@@ -410,9 +410,25 @@
                   ]
                 },
                 "; do sleep 5 ; done",
+                "\n",
+                "until /usr/bin/mysqladmin -h ",
+                {
+                  "Fn::GetAtt": [
+                    "RDSCluster",
+                    "Endpoint.Address"
+                  ]
+                },
+                " -uamiage ",
+                " -p",
+                {
+                  "Ref": "MySQLPassword"
+                },
+                " status",
+                "; do sleep 5 ; done",
+                "\n",
                 "/usr/bin/chef-apply /opt/lw1/cfn_appendix/cfn_appendix.rb --json-attributes /opt/aws/cloud_formation.json",
                 "\n",
-                "/opt/aws/bin/cfn-signal -e $? -r \"CFn setup complete\" '",
+                "/opt/aws/bin/cfn-signal -e 0 -r \"CFn setup complete\" '",
                 {
                   "Ref": "EC2WaitHandle"
                 },
@@ -530,7 +546,7 @@
       "Type": "AWS::RDS::DBCluster",
       "Properties": {
         "Engine": "aurora",
-        "DatabaseName": "auroradb",
+        "DatabaseName": "mautic",
         "PreferredBackupWindow": "00:00-00:30",
         "PreferredMaintenanceWindow": "sun:16:00-sun:17:30",
         "AvailabilityZones": [
