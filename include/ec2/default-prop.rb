@@ -52,7 +52,7 @@
             "until [ -f /var/www/html/install_amiage.php ]  ; do sleep 5 ; done", "\n",
             "until host ",
             _{
-              Fn::GetAtt [
+              Fn__GetAtt [
                 "RDSCluster",
                 "Endpoint.Address"
               ]
@@ -61,7 +61,7 @@
             "\n",
             "until /usr/bin/mysqladmin -h ",
             _{
-              Fn::GetAtt [
+              Fn__GetAtt [
                     "RDSCluster",
                     "Endpoint.Address"
               ]
