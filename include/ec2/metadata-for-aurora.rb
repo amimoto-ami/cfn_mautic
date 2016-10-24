@@ -1,7 +1,7 @@
 _path("/opt/aws/cloud_formation.json") do
 	content '{
 	  "rds" : {
-		"database" : "auroradb",
+		"database" : "mautic",
 		"username" : "amiage",
 		"password" : "{{password}}",
 		"endpoint" : "{{endpoint}}",

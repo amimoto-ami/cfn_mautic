@@ -72,6 +72,12 @@
             " status",
             "; do sleep 5 ; done",
             "\n",
+            "rm -f /var/www/html/app/bootstrap.php.cache",
+            "\n",
+            "rm -rf /var/www/html/app/cache/*",
+            "\n",
+            "rm -f /var/www/html/app/config/local.php",
+            "\n",
             "/usr/bin/chef-apply /opt/lw1/cfn_appendix/cfn_appendix.rb --json-attributes /opt/aws/cloud_formation.json", "\n",
             "/opt/aws/bin/cfn-signal -e 0 -r \"CFn setup complete\" '",
             _{ Ref "EC2WaitHandle" }, "'\n"
