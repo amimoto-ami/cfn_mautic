@@ -78,6 +78,8 @@
             "\n",
             "rm -f /var/www/html/app/config/local.php",
             "\n",
+            "chown apache.apache /var/www/html/",
+            "\n",
             "/usr/bin/chef-apply /opt/lw1/cfn_appendix/cfn_appendix.rb --json-attributes /opt/aws/cloud_formation.json", "\n",
             "/opt/aws/bin/cfn-signal -e 0 -r \"CFn setup complete\" '",
             _{ Ref "EC2WaitHandle" }, "'\n"
