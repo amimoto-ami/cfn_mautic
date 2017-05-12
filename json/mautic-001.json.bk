@@ -3,47 +3,35 @@
   "Description": "This is AMIAGE Mautic Stack made by CloudFormation.\n",
   "Mappings": {
     "MPAMIs": {
-      "ap-south-1": {
-        "AMI": "ami-2b592b44"
-      },
-      "eu-west-2": {
-        "AMI": "ami-cde9fda9"
-      },
       "eu-west-1": {
-        "AMI": "ami-a61a1ac0"
-      },
-      "ap-northeast-2": {
-        "AMI": "ami-fd4d9f93"
-      },
-      "ap-northeast-1": {
-        "AMI": "ami-01153f66"
-      },
-      "sa-east-1": {
-        "AMI": "ami-ccf598a0"
-      },
-      "ca-central-1": {
-        "AMI": "ami-dcb509b8"
+        "AMI": "ami-2d3cbf5e"
       },
       "ap-southeast-1": {
-        "AMI": "ami-01a11a62"
+        "AMI": "ami-ec26f38f"
       },
       "ap-southeast-2": {
-        "AMI": "ami-99c9c1fa"
+        "AMI": "ami-e50e2c86"
       },
       "eu-central-1": {
-        "AMI": "ami-9a1cc0f5"
+        "AMI": "ami-17947478"
+      },
+      "ap-northeast-2": {
+        "AMI": "ami-cdc50da3"
+      },
+      "ap-northeast-1": {
+        "AMI": "ami-da2032b4"
       },
       "us-east-1": {
-        "AMI": "ami-12254004"
+        "AMI": "ami-94eab783"
       },
-      "us-east-2": {
-        "AMI": "ami-b4597ed1"
+      "sa-east-1": {
+        "AMI": "ami-54d05e38"
       },
       "us-west-1": {
-        "AMI": "ami-4a61462a"
+        "AMI": "ami-03dea263"
       },
       "us-west-2": {
-        "AMI": "ami-f9930d99"
+        "AMI": "ami-24ab5c44"
       }
     }
   },
@@ -444,11 +432,7 @@
                 "\n",
                 "rm -f /var/www/html/app/config/local.php",
                 "\n",
-                "chown apache.apache /var/www/html/",
-                "\n",
                 "/usr/bin/chef-apply /opt/lw1/cfn_appendix/cfn_appendix.rb --json-attributes /opt/aws/cloud_formation.json",
-                "\n",
-                "cd /var/www/html ; sudo -u apache /usr/bin/php app/console doctrine:fixtures:load --env=prod --append --fixtures=app/bundles/InstallBundle/InstallFixtures/ --no-interaction ; cd -",
                 "\n",
                 "/opt/aws/bin/cfn-signal -e 0 -r \"CFn setup complete\" '",
                 {
