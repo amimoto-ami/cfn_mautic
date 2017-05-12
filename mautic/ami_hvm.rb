@@ -1,15 +1,19 @@
 ## "Mautic 1.3.0-1*"
 MPAMIs(
   {
-    "eu-west-1"=>{"AMI"=>"ami-2d3cbf5e"},
-    "ap-southeast-1"=>{"AMI"=>"ami-ec26f38f"},
-    "ap-southeast-2"=>{"AMI"=>"ami-e50e2c86"},
-    "eu-central-1"=>{"AMI"=>"ami-17947478"},
-    "ap-northeast-2"=>{"AMI"=>"ami-cdc50da3"},
-    "ap-northeast-1"=>{"AMI"=>"ami-da2032b4"},
-    "us-east-1"=>{"AMI"=>"ami-b95a49d3"},
-    "sa-east-1"=>{"AMI"=>"ami-54d05e38"},
-    "us-west-1"=>{"AMI"=>"ami-03dea263"},
-    "us-west-2"=>{"AMI"=>"ami-24ab5c44"},
+    "ap-south-1"=>{"AMI"=>"ami-2b592b44"},
+    "eu-west-2"=>{"AMI"=>"ami-cde9fda9"},
+    "eu-west-1"=>{"AMI"=>"ami-a61a1ac0"},
+    "ap-northeast-2"=>{"AMI"=>"ami-fd4d9f93"},
+    "ap-northeast-1"=>{"AMI"=>"ami-01153f66"},
+    "sa-east-1"=>{"AMI"=>"ami-ccf598a0"},
+    "ca-central-1"=>{"AMI"=>"ami-dcb509b8"},
+    "ap-southeast-1"=>{"AMI"=>"ami-01a11a62"},
+    "ap-southeast-2"=>{"AMI"=>"ami-99c9c1fa"},
+    "eu-central-1"=>{"AMI"=>"ami-9a1cc0f5"},
+    "us-east-1"=>{"AMI"=>"ami-12254004"},
+    "us-east-2"=>{"AMI"=>"ami-b4597ed1"},
+    "us-west-1"=>{"AMI"=>"ami-4a61462a"},
+    "us-west-2"=>{"AMI"=>"ami-f9930d99"},
   }
 )
