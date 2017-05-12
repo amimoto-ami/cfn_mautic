@@ -49,7 +49,7 @@
               Ref "AWS::Region"
             },
             "\n",
-            "until [ -f /opt/aws/cloud_formation.json ]  ; do sleep 5 ; done", "\n",
+            "until [ -f /var/www/html/install_amiage.php ]  ; do sleep 5 ; done", "\n",
             "until host ",
             _{
               Fn__GetAtt [
