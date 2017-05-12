@@ -81,6 +81,7 @@
             "chown apache.apache /var/www/html/",
             "\n",
             "/usr/bin/chef-apply /opt/lw1/cfn_appendix/cfn_appendix.rb --json-attributes /opt/aws/cloud_formation.json", "\n",
+            "cd /var/www/html ; sudo -u apache /usr/bin/php app/console doctrine:fixtures:load --env=prod --append --fixtures=app/bundles/InstallBundle/InstallFixtures/ --no-interaction ; cd -", "\n",
             "/opt/aws/bin/cfn-signal -e 0 -r \"CFn setup complete\" '",
             _{ Ref "EC2WaitHandle" }, "'\n"
           ]
